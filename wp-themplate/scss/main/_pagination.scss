@@ -1,0 +1,99 @@
+@mixin pagination() {
+    position: relative;
+    display: block;
+    width: 100%;
+    flex: 1 1 auto;
+    margin-top: 2.25rem;
+
+    ul {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .previous {
+
+            a {
+                border-right: 1px solid map-get($root, gray-d);
+                border-top-right-radius: map-get($root, border-radius) / 2;
+                border-bottom-right-radius: map-get($root, border-radius) / 2;
+
+                i {
+                    font-size: 1.15em;
+                }
+            }
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+
+            a {
+                display: block;
+                padding: .375rem .75rem;
+                min-width: 2.5rem;
+                text-decoration: none;
+                font-style: normal;
+                line-height: 1.5;
+                font-size: .95rem;
+                text-align: center;
+                border: 1px solid map-get($root, gray-d);
+                border-right: none;
+                cursor: pointer;
+                color: map-get($root, mainColor1);
+                background-color: map-get($root, body-background);
+                @include user-select();
+                transition: color map-get($root, transition-df), background-color map-get($root, transition-df), border-color map-get($root, transition-df);
+
+                &:hover {
+                    color: map-get($root, mainColor2);
+                }
+            }
+        }
+
+        .next {
+
+            a {
+                border-top-left-radius: map-get($root, border-radius) / 2;
+                border-bottom-left-radius: map-get($root, border-radius) / 2;
+
+                i {
+                    font-size: 1.15em;
+                }
+            }
+        }
+
+        .selected {
+
+            a {
+                font-weight: 700;
+                color: map-get($root, white);
+                background-color: map-get($root, mainColor1);
+                border-color: map-get($root, mainColor1);
+            }
+
+            &+li a {
+                border-right: 1px solid map-get($root, gray-d);
+            }
+        }
+
+        .break {}
+
+        .disabled {
+            opacity: .5;
+            cursor: auto;
+            pointer-events: none;
+        }
+
+        @media (mediaMaxWidth()) {
+            flex-wrap: wrap;
+
+            li {
+                margin: .25rem 0;
+            }
+        }
+    }
+}

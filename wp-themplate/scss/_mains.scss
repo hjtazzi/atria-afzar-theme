@@ -1,0 +1,58 @@
+main {
+    margin: 1.75rem 0;
+
+    &,
+    * {
+        z-index: 1;
+    }
+
+    .space {
+        padding: 1.75rem 0;
+    }
+}
+
+/* mixins */
+@import "./main/sections-title";
+@import "./main/post-cards";
+@import "./main/product-cards";
+@import "./main/pagination";
+
+/* home */
+@import "./main/home-about";
+
+/* blog */
+@import "./main/blog";
+
+/* products */
+@import "./main/products";
+
+/* author */
+@import "./main/author";
+
+/* search */
+@import "./main/search";
+
+/* single */
+@import "./main/single-page";
+
+/* single products */
+@import "./main/single-products";
+@import "./main/preview";
+
+/* authentication */
+@import "./main/authentication";
+
+/* comments */
+@import "./main/comments";
+
+/* sidebar */
+@import "./main/sidebar";
+
+/* not found */
+@import "./main/404";
+
+/* account */
+@import "./main/profile";
+
+
+@import "./main/main";

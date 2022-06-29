@@ -1,0 +1,41 @@
+.aa-metaTextarea {
+    display: block;
+    margin: 12px 0 0;
+    min-height: 4em;
+    width: 100%;
+}
+
+.aa-metaText {
+    display: block;
+    margin: 12px 0 0;
+    width: 100%;
+    max-width: 254px;
+}
+
+.aa-metaNumber {
+    display: inline-block;
+    margin: 12px 0 0;
+}
+
+.aa-metaNumber+label {
+    display: inline-block;
+    margin: 12px 6px 0 0;
+    line-height: 2;
+}
+
+.aa-mateCheck {
+    margin: 12px 0 0 !important;
+    opacity: 1 !important;
+}
+
+.aa-mateCheck+label {
+    display: inline-block;
+    margin: 12px 6px 0 0;
+    line-height: 1;
+}
+
+.aa-metaNumber:disabled+label,
+.aa-mateCheck:disabled+label {
+    cursor: default;
+    color: rgba(44, 51, 56, .5);
+}

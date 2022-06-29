@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "iran-sans";
+    src: url("./fonts/IRANSans.eot") format("eot"),
+        url("./fonts/IRANSans.ttf") format("truetype"),
+        url("./fonts/IRANSans.woff") format("woff");
+}
+
+@font-face {
+    font-family: "aa-icons";
+    src: url('./fonts/aa-icons.eot') format('embedded-opentype'),
+        url('./fonts/aa-icons.ttf') format('truetype'),
+        url('./fonts/aa-icons.woff') format('woff'),
+        url('./fonts/aa-icons.svg') format('svg');
+}
+
+:root {
+    --main-color1: #60f;
+    --main-color2: #f3c;
+    --main-white: #fdfdff;
+    --main-light: #f2f2f2;
+    --main-dark: #325;
+    --main-blue: #06c;
+    --main-cyan: #0cf;
+    --main-indigo: #63f;
+    --main-purple: #64c;
+    --main-pink: #f0c;
+    --main-red: #f03;
+    --main-danger: #c03;
+    --main-orange: #f63;
+    --main-yellow: #fc3;
+    --main-warning: #ec1;
+    --main-green: #093;
+    --main-success: #6c0;
+    --main-teal: #0c9;
+    --main-gray-3: #333;
+    --main-gray-4: #444;
+    --main-gray-5: #555;
+    --main-gray-6: #666;
+    --main-gray-7: #777;
+    --main-gray-8: #888;
+    --main-gray-9: #999;
+    --main-gray-a: #aaa;
+    --main-gray-b: #bbb;
+    --main-gray-c: #ccc;
+    --main-gray-d: #ddd;
+    --main-gray-e: #eee;
+    --main-body-font-family: "iran-sans", Tahoma, Arial, sans-serif;
+    --main-body-font-size: 1rem;
+    --main-body-font-weight: 400;
+    --main-body-line-height: 1.5;
+    --main-body-color: #325;
+    --main-body-text-align: right;
+    --main-body-bg: #fcfcff;
+    --swiper-theme-color: #60f;
+}
+
+$root:(
+    color1: #60f,
+    color2: #f3c,
+    color3: mix(#60f, #f3c, 50%),
+    mainColor1: var(--main-color1),
+    mainColor2: var(--main-color2),
+    white: var(--main-white),
+    light: var(--main-light),
+    dark: var(--main-dark),
+    blue: var(--main-blue),
+    cyan: var(--main-cyan),
+    indigo: var(--main-indigo),
+    purple: var(--main-purple),
+    pink: var(--main-pink),
+    red: var(--main-red),
+    danger: var(--main-danger),
+    orange: var(--main-orange),
+    yellow: var(--main-yellow),
+    warning: var(--main-warning),
+    green: var(--main-green),
+    success: var(--main-success),
+    teal: var(--main-teal),
+    gray-3: var(--main-gray-3),
+    gray-4: var(--main-gray-4),
+    gray-5: var(--main-gray-5),
+    gray-6: var(--main-gray-6),
+    gray-7: var(--main-gray-7),
+    gray-8: var(--main-gray-8),
+    gray-9: var(--main-gray-9),
+    gray-a: var(--main-gray-a),
+    gray-b: var(--main-gray-b),
+    gray-c: var(--main-gray-c),
+    gray-d: var(--main-gray-d),
+    gray-e: var(--main-gray-e),
+    body-font-family: var(--main-body-font-family),
+    body-font-size: var(--main-body-font-size),
+    body-font-weight: var(--main-body-font-weight),
+    body-line-height: var(--main-body-line-height),
+    body-background: var(--main-body-bg),
+    body-color: var(--main-body-color),
+    border-radius: 1.25rem,
+    box-shadow: 0 0 .75rem 0 var(--main-gray-d),
+    box-shadow-hover: 0 4px 1rem 0 var(--main-gray-d),
+    drop-shadow-d: 0 0 1rem var(--main-gray-d),
+    drop-shadow: 0 0 1.25rem var(--main-gray-e),
+    transition-df: .35s ease,
+    transition-nav: .55s ease,
+);

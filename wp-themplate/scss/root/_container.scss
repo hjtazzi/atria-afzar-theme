@@ -1,0 +1,39 @@
+@mixin container($base: 1) {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-right: $base * $containers-padding;
+    padding-left: $base * $containers-padding;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+$breakpoints: map-keys($containers-breakpoint);
+@function containersBreakpoint( $list:$breakpoints, $prefix:"container" ) {
+    $x: "." + $prefix;
+    @each $l in $list {
+        $x: $x + ", ." + $prefix + "-" + $l ;
+    }
+    @return $x;
+}
+
+#{containersBreakpoint()} {
+    @include container();
+}
+
+@each $breakpoint , $breakpoint-width in $containers-breakpoint {
+    @media (min-width: $breakpoint-width) {
+        #{containersBreakpoint()} {
+            width: map-get($containers-width,$breakpoint);
+        }
+    }
+    @media (max-width: $breakpoint-width - .02) {
+        .container-#{$breakpoint} {
+            width: 100%;
+        }
+    }
+}
+
+.container-fluid {
+    @include container();
+}

@@ -1,0 +1,48 @@
+.not-found {
+    .not-found-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 2.25rem 1rem;
+        border-radius: map-get($root, border-radius);
+        box-shadow: 0 0 1rem 0 var(--main-gray-d);
+        background-color: map-get($root, body-background);
+
+        h1 {
+            margin: 0;
+            font-size: 6rem;
+            color: map-get($root, danger);
+            @include animations(noscriptAnim, 8s, linear, infinite);
+
+            @media (mediaMaxWidth()) {
+                font-size: 5rem;
+            }
+
+            >i {
+                @include animations(spin-2, 8s, linear, infinite);
+            }
+        }
+
+        .title {
+            margin: 1.75rem 0 0 0;
+            padding: 0 .75rem;
+            font-size: 1.5rem;
+            text-align: center;
+
+            @media (mediaMaxWidth()) {
+                font-size: 1.25rem;
+            }
+        }
+
+        .btn-primary {
+            margin: 1.75rem 0 0 0;
+
+            >i {
+                @include animations(transformBtn, 4s, linear, infinite);
+            }
+        }
+    }
+}

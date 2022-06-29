@@ -1,0 +1,108 @@
+$br-radius: map-get($root, border-radius);
+$margins: .75rem;
+
+.alerts {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: transparent;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 11 !important;
+
+    .alert-item {
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: .75rem 0;
+        background: transparent;
+        @include animations(alerts, .35s, linear);
+
+        .alert-content {
+            position: relative;
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            border-radius: $br-radius;
+            background: map-get($root, white);
+            box-shadow: map-get($root, box-shadow);
+
+            span {
+                align-self: stretch;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: -1px;
+                margin-left: $margins;
+                padding: .75rem 1rem;
+                border-top-right-radius: $br-radius;
+                border-bottom-right-radius: $br-radius;
+                color: map-get($root, white);
+
+                i {
+                    font-size: 1.5rem;
+                    vertical-align: middle;
+                }
+            }
+
+            p {
+                margin: 0;
+                padding: $margins;
+            }
+
+            .icon-close {
+                align-self: flex-start;
+
+                button {
+                    margin: $margins 0;
+                    font-size: 1rem;
+
+                    &:hover {
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
+
+        .danger {
+            border: 2px solid map-get($root, danger);
+
+            span {
+                background-color: map-get($root, danger);
+            }
+
+            button {
+                color: map-get($root, danger);
+            }
+        }
+
+        .success {
+            border: 2px solid map-get($root, success);
+
+            span {
+                background-color: map-get($root, success);
+            }
+
+            button {
+                color: map-get($root, success);
+            }
+        }
+
+        .warning {
+            border: 2px solid map-get($root, warning);
+
+            span {
+                background-color: map-get($root, warning);
+            }
+
+            button {
+                color: map-get($root, warning);
+            }
+        }
+    }
+}

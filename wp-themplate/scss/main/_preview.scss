@@ -1,0 +1,96 @@
+.preview {
+
+    &-main,
+    &-footer {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    &-main {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+        iframe {
+            position: relative;
+            display: block;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            border-radius: map-get($root, border-radius);
+            box-shadow: map-get($root, box-shadow);
+            transition: width map-get($root, transition-df), height map-get($root, transition-df);
+        }
+    }
+
+    &-footer {
+        $btnW: 3.25rem;
+        $btnN: 5;
+
+        position: fixed;
+        display: flex;
+        width: $btnW * $btnN;
+        left: calc(50% - #{($btnW * $btnN) / 2});
+        bottom: 0;
+        z-index: 999;
+        border: 1px solid map-get($root, mainColor1);
+        border-bottom: none;
+        border-radius: map-get($root, border-radius) / 1.5;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        overflow: hidden;
+        background-color: map-get($root, body-background) !important;
+        filter: drop-shadow(0 -4px 6px map-get($root, gray-d));
+
+        .btn-primary {
+            font-size: 1.75rem;
+            border: none;
+            border-radius: 0;
+            min-width: $btnW;
+
+            &:first-child {
+                border-right: 1px solid map-get($root, mainColor1);
+            }
+
+            &:last-child {
+                border-left: 1px solid map-get($root, mainColor1);
+            }
+        }
+    }
+}
+
+/* Mobile */
+@media (mediaMaxWidth()) {
+    .preview {
+
+        &-footer {
+            $btnW: 3rem;
+            $btnN: 2;
+
+            width: $btnW * $btnN;
+            left: calc(50% - #{($btnW * $btnN) / 2});
+
+            .btn-primary {
+                font-size: 1.5rem;
+                min-width: $btnW;
+
+                &:last-child {
+                    border: none;
+                }
+            }
+
+            .ch-size {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
+}

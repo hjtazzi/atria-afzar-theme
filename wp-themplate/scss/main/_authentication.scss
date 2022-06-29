@@ -1,0 +1,132 @@
+.authentication {
+    position: relative;
+    display: block;
+    width: 100%;
+    filter: drop-shadow(map-get($root, drop-shadow));
+
+    .authentication-before {
+        width: 100%;
+        text-align: left;
+        overflow: hidden;
+        border-radius: 0;
+        border-top-left-radius: map-get($root, border-radius) * 1.5;
+
+        svg {
+            transform: scale(-1);
+        }
+    }
+
+    .authentication-form {
+        position: relative;
+        display: flex;
+        width: 100%;
+        padding: .75rem;
+        background-color: map-get($root, body-background);
+        border-radius: map-get($root, border-radius);
+        border-top-left-radius: 0;
+
+        .af-r {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45%;
+
+            >div {
+                display: block;
+                width: 100%;
+                background-repeat: no-repeat;
+                background-origin: content-box;
+                background-clip: content-box;
+                background-size: 108%;
+                background-position: 50% 50%;
+                @include animations(hAboutBg, 6s, linear, infinite);
+
+                img {
+                    @include animations(hAboutImg, 6s, linear, infinite);
+                }
+            }
+        }
+
+        .af-l {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            flex: 1 1 auto;
+            padding: .75rem 0;
+
+            form {
+                width: 75%;
+                margin-top: 1.25rem;
+                text-align: center;
+
+                .input-group {
+                    margin-bottom: .75rem;
+                }
+
+                .check-group {
+                    padding-top: .5rem;
+                }
+
+                .btn-primary {
+                    margin-top: 1.75rem;
+                    padding-right: 1.75rem;
+                    padding-left: 1.75rem;
+                }
+            }
+
+            .btns {
+                width: 75%;
+                margin-top: 1.25rem;
+
+                p {
+                    margin: 0;
+
+                    a {
+
+                        i {
+                            font-size: 1.15em;
+                            margin-left: .25rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Mobile */
+@media (mediaMaxWidth()) {
+    .authentication {
+
+        .authentication-before {
+            svg {
+                width: 180px;
+            }
+        }
+
+        .authentication-form {
+            flex-direction: column;
+
+            .af-r,
+            .af-l {
+                width: 100%;
+            }
+
+            .af-l {
+
+                form {
+                    width: 100%;
+                    margin-top: 1.75rem;
+                }
+
+                .btns {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

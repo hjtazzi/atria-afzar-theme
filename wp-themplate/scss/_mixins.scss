@@ -1,0 +1,492 @@
+@mixin inline-text() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin user-select() {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+@mixin user-drag() {
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+// animations
+@mixin animations($name, $duration, $tFunc: ease, $count: 1, $origin: center center) {
+    animation: $name $duration $count $tFunc;
+    transform-origin: $origin;
+    -webkit-animation: $name $duration $count $tFunc;
+    -webkit-transform-origin: $origin;
+    -moz-animation: $name $duration $count $tFunc;
+    -moz-transform-origin: $origin;
+    -ms-animation: $name $duration $count $tFunc;
+    -ms-transform-origin: $origin;
+    -o-animation: $name $duration $count $tFunc;
+    -o-transform-origin: $origin;
+}
+
+// img
+@mixin imgs() {
+    width: 100%;
+    height: auto;
+    border-radius: map-get($root, border-radius);
+}
+
+img,
+video {
+    @include imgs();
+    @include user-drag();
+}
+
+// a
+@mixin a-tags() {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1em;
+    color: map-get($root, mainColor1);
+    background-color: transparent;
+    transition: background-color map-get($root, transition-df),
+        color map-get($root, transition-df),
+        box-shadow map-get($root, transition-df),
+        text-shadow map-get($root, transition-df),
+        opacity map-get($root, transition-df),
+        transform map-get($root, transition-df)
+    ;
+
+    &:hover {
+        color: map-get($root, mainColor2);
+    }
+
+    &:active {
+        color: map-get($root, color3);
+    }
+}
+
+a {
+    @include a-tags();
+}
+
+// btns
+@mixin btns($base:1) {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: $base*.375rem $base*.75rem;
+    border-radius: map-get($root, border-radius);
+    transition:
+        color map-get($root, transition-df),
+        background-color map-get($root, transition-df),
+        border-color map-get($root, transition-df),
+        box-shadow map-get($root, transition-df),
+        opacity map-get($root, transition-df)
+    ;
+    @include user-select();
+
+    &>i {
+        vertical-align: middle;
+        line-height: 1.5;
+    }
+}
+
+@mixin btn(
+    $color:map-get($root, mainColor1),
+    $bg-color:transparent,
+    $br-width: 2px,
+    $br-color:map-get($root, mainColor1),
+    $h-color:map-get($root, light),
+    $h-bg-color:map-get($root, mainColor2),
+    $h-br-color:map-get($root, mainColor2))
+{
+    color: $color;
+    background-color: $bg-color;
+    border: $br-width solid $br-color;
+
+    &:hover {
+        color: $h-color;
+        background-color: $h-bg-color;
+        border-color: $h-br-color;
+    }
+
+    &:focus {
+        color: $color;
+        background-color: $bg-color;
+        border-color: $br-color;
+        box-shadow: 0 0 0 1px $br-color;
+    }
+
+    &:focus:active {
+        box-shadow: 0 0 0 2px $br-color;
+    }
+
+    &:focus-visible {
+        outline: 0;
+    }
+}
+
+$btns-tag: "primary",
+"secondary",
+"danger",
+"success"
+;
+
+@function btnsTag($list:$btns-tag, $prefix:"btn", $disabled:false) {
+    $x: "."+ $prefix;
+
+    @if $disabled {
+        $x: $x + ":disabled";
+    }
+
+    @each $l in $list {
+        $x: $x + ", ."+ $prefix + "-"+ $l;
+
+        @if $disabled {
+            $x: $x + ":disabled";
+        }
+    }
+
+    @return $x;
+}
+
+#{btnsTag()} {
+    @include btns();
+}
+
+#{btnsTag($disabled: true)} {
+    pointer-events: none;
+    opacity: .5;
+}
+
+.btn {
+    @include btn(
+        $color:map-get($root, body-color),
+        $br-width: 0,
+        $br-color:transparent,
+        $h-color:map-get($root, gray-7),
+        $h-bg-color:transparent,
+        $h-br-color:transparent,
+    );
+}
+
+.btn-primary {
+    @include btn();
+}
+
+.btn-secondary {
+    @include btn(
+        $color:map-get($root, gray-8),
+        $bg-color:map-get($root, light),
+        $br-color:map-get($root, gray-8),
+        $h-color:map-get($root, gray-8),
+        $h-bg-color:map-get($root, gray-d),
+        $h-br-color:map-get($root, gray-d),
+    );
+}
+
+.btn-danger {
+    @include btn(
+        $color:map-get($root, danger),
+        $br-color:map-get($root, danger),
+        $h-color:map-get($root, light),
+        $h-bg-color:map-get($root, danger),
+        $h-br-color:map-get($root, danger),
+    );
+}
+
+.btn-success {
+    @include btn($color:map-get($root, green),
+        $br-color:map-get($root, green),
+        $h-color:map-get($root, light),
+        $h-bg-color:map-get($root, green),
+        $h-br-color:map-get($root, green),
+    );
+}
+
+// input group
+@mixin form-submit(
+    $color:map-get($root, gray-9),
+    $h-color:map-get($root, mainColor1),
+    $f-color:map-get($root, mainColor2))
+{
+    @include btns();
+    @include btn(
+        $color:$color,
+        $br-width: 0,
+        $br-color:transparent,
+        $h-color:$h-color,
+        $h-bg-color:transparent,
+        $h-br-color:transparent,
+    );
+
+    &>i {
+        font-size: 1.25em;
+    }
+
+    &:focus {
+        color: $f-color;
+    }
+}
+
+@mixin form-control(
+    $ph-color: map-get($root, gray-b),
+    $bg-color: map-get($root, gray-9))
+{
+    position: relative;
+    display: block;
+    flex: 1 1 auto;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: right;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-top-right-radius: map-get($root, border-radius) / 2;
+    border-top-left-radius: map-get($root, border-radius) / 2;
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+    color: map-get($root, body-color);
+    background-color: transparent;
+
+    &::placeholder {
+        color: $ph-color;
+        font-size: .95em;
+    }
+
+    &:focus {
+        ~.fc-after,
+        &+.fc-after {
+            &::after {
+                transform: scaleX(1);
+            }
+        }
+    }
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    ~.fc-after,
+    &+.fc-after {
+        position: relative;
+        display: block;
+        width: 100%;
+        align-self: flex-end;
+        height: 1px;
+        border-radius: .5px;
+        background-color: $bg-color;
+
+        &::after {
+            content: '';
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 1px;
+            border-radius: .5px;
+            background-color: map-get($root, mainColor1);
+            transform: scaleX(0);
+            transition: transform map-get($root, transition-df);
+        }
+    }
+}
+
+@mixin form-check(
+    $bg-color: map-get($root, white),
+    $br-color: map-get($root, gray-9),
+    $lbl-color: map-get($root, mainColor2),
+    $h-br-color: map-get($root, mainColor2),
+    $ch-bg-color: map-get($root, mainColor1),
+    $ch-br-color: map-get($root, mainColor1),
+) {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 2px;
+    outline: none;
+    vertical-align: middle;
+    padding: 0;
+    border: 1px solid $br-color;
+    background-color: $bg-color;
+    cursor: pointer;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    transition:
+        background-color map-get($root, transition-df),
+        border-color map-get($root, transition-df),
+        box-shadow map-get($root, transition-df);
+
+    &[type="radio"] {
+        border-radius: 50%;
+    }
+
+    &[type="checkbox"] {
+        border-radius: 8px;
+    }
+
+    &[type="radio"]+label,
+    &[type="checkbox"]+label {
+        cursor: pointer;
+        padding-right: .25rem;
+        line-height: 1;
+        font-size: .9rem;
+        color: map-get($root, gray-9);
+        transition: color map-get($root, transition-df);
+    }
+
+    &[type="radio"]::after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 4px;
+        top: 4px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: $bg-color;
+        opacity: 0;
+        transform: scale(0);
+        transition: transform map-get($root, transition-df), map-get($root, transition-df);
+    }
+
+    &[type="checkbox"]::after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 6px;
+        top: 2px;
+        width: 7px;
+        height: 12px;
+        border-right: 3px solid $bg-color;
+        border-bottom: 3px solid $bg-color;
+        border-radius: 1px;
+        opacity: 0;
+        transform: rotate(45deg);
+        transition: transform map-get($root, transition-df), map-get($root, transition-df);
+    }
+
+    &[type="radio"]:checked {
+        background-color: $ch-bg-color;
+        border-color: $ch-br-color;
+
+        &::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &+label {
+            color: map-get($root, dark);
+        }
+    }
+
+    &[type="checkbox"]:checked {
+        background-color: $ch-bg-color;
+        border-color: $ch-br-color;
+
+        &::after {
+            opacity: 1;
+            transform: rotate(45deg);
+        }
+
+        &+label {
+            color: map-get($root, dark);
+        }
+    }
+
+    &[type="radio"]:hover,
+    &[type="checkbox"]:hover {
+
+        &+label {
+            color: $lbl-color;
+        }
+
+        &:not(:checked) {
+            border-color: $h-br-color;
+        }
+    }
+
+    &[type="radio"]:focus,
+    &[type="checkbox"]:focus {
+        border-color: $ch-br-color;
+        box-shadow: 0 0 0 1px $ch-br-color;
+    }
+
+    &[type="radio"]:disabled,
+    &[type="radio"]:disabled+label,
+    &[type="checkbox"]:disabled,
+    &[type="checkbox"]:disabled+label {
+        pointer-events: none;
+        opacity: .75;
+    }
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    border: none;
+    border-top-right-radius: map-get($root, border-radius) / 2;
+    border-top-left-radius: map-get($root, border-radius) / 2;
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+
+    &.fc-disabled {
+        background-color: map-get($root, gray-e);
+        opacity: .75;
+    }
+
+    .fc-r {
+        padding-right: 0;
+    }
+
+    .fc-l {
+        padding-left: 0;
+    }
+}
+
+.check-group {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    &,
+    .form-check,
+    .form-check+label {
+        @include user-select();
+    }
+}
+
+.form-submit {
+    @include form-submit();
+}
+
+.form-control {
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+        @include form-control();
+    }
+}
+
+.form-check {
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+        @include form-check();
+    }
+}

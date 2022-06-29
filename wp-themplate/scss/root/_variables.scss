@@ -1,0 +1,46 @@
+// container
+$containers-padding: .75rem;
+
+$containers-breakpoint:(
+    sm: 576px,
+    md: 768px,
+    lg: 960px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+$containers-width:(
+    sm: 548px,
+    md: 736px,
+    lg: 928px,
+    xl: 1160px,
+    xxl: 1352px
+);
+
+@function mediaMinWidth($list:$containers-breakpoint, $breakpoint:"md") {
+    $breakpoint-val: map-get($list,$breakpoint);
+    @return "min-width:" + $breakpoint-val;
+}
+
+@function mediaMaxWidth($list:$containers-breakpoint, $breakpoint:"md") {
+    $breakpoint-val: map-get($list,$breakpoint) - .2;
+    @return "max-width:" + $breakpoint-val;
+}
+
+// grid
+$grids-padding: .5rem;
+
+$grids-col:
+    1,
+    2,
+    3,
+    4,
+    5
+;
+
+$grids-width:
+    100,
+    75,
+    50,
+    25
+;

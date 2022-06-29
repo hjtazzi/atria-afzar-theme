@@ -1,0 +1,47 @@
+.error {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: map-get($root, body-background);
+    z-index: 9999;
+
+    div {
+        text-align: center;
+
+        >i {
+            font-size: 6.5rem;
+            color: map-get($root, danger);
+            @include animations(noscriptAnim, 8s, linear, infinite);
+
+            @media (mediaMaxWidth()) {
+                font-size: 5.5rem;
+            }
+        }
+
+        .title {
+            margin: 1.75rem 0 0 0;
+            padding: 0 .75rem;
+            font-size: 1.5rem;
+            text-align: center;
+
+            @media (mediaMaxWidth()) {
+                font-size: 1.25rem;
+            }
+        }
+
+        .btn-primary {
+            margin: 1.75rem 0 0 0;
+
+            >i {
+                @include animations(transformBtn, 4s, linear, infinite);
+            }
+        }
+    }
+}

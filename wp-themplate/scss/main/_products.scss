@@ -1,0 +1,16 @@
+.products {
+    .products-content {
+        width: 100%;
+        padding: 2.25rem 1rem 1rem;
+        border-radius: map-get($root, border-radius);
+        box-shadow: 0 0 1rem 0 var(--main-gray-d);
+        background-color: map-get($root, body-background);
+
+        .products-content-title {
+            margin: 0;
+            padding: 0;
+            display: none;
+            visibility: hidden;
+        }
+    }
+}

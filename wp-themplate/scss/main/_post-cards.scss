@@ -1,0 +1,99 @@
+@mixin post-card() {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: map-get($root, body-background);
+    box-shadow: map-get($root, box-shadow);
+    border-radius: map-get($root, border-radius);
+    transition: transform map-get($root, transition-df), box-shadow map-get($root, transition-df);
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: map-get($root, box-shadow-hover);
+
+        .post {
+            &-attachment {
+
+                a {
+                    display: block;
+
+                    img {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        }
+    }
+
+    &:active {
+        transform: scale(.95);
+    }
+
+    .post {
+        &-attachment {
+            position: relative;
+            min-height: 5rem;
+
+            a {
+                display: block;
+                overflow: hidden;
+                border-radius: map-get($root, border-radius);
+
+                img {
+                    transition: transform map-get($root, transition-df);
+                }
+            }
+        }
+
+        &-title {
+            padding: 1.25rem $grids-padding;
+
+            a {
+                display: block;
+
+                h3 {
+                    margin: 0;
+                    font-size: 1.15rem;
+                    font-weight: normal;
+
+                    @media (mediaMaxWidth()) {
+                        font-size: 1.05rem;
+                    }
+                }
+            }
+        }
+
+        &-excerpt {
+            padding: 0 $grids-padding;
+
+            p {
+                margin: 0 0 .5rem 0;
+                font-size: .9rem;
+                color: map-get($root, gray-7);
+
+                @media (mediaMaxWidth()) {
+                    font-size: .85rem;
+                }
+            }
+        }
+
+        &-more {
+            padding: $grids-padding;
+            text-align: left;
+
+            a {
+                padding: 0 .5rem;
+                border-color: transparent;
+                font-size: .9rem;
+
+                @media (mediaMaxWidth()) {
+                    font-size: .85rem;
+                }
+            }
+        }
+    }
+}

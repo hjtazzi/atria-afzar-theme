@@ -1,0 +1,26 @@
+/*
+ * Theme Name: Atria Afzar New
+ * Theme URI: https://atria-afzar.ir
+ * Author: Atria Afzar
+ * Author URI: https://atria-afzar.ir/
+ * Version: 02.00
+*/
+
+@import "./scss/root/variables";
+@import "./scss/root/root";
+@import "./scss/root/reboot";
+@import "./scss/root/container";
+@import "./scss/root/grid";
+
+@import "./scss/fonts";
+@import "./scss/keyframes";
+@import "./scss/mixins";
+
+@import "./scss/noscript";
+@import "./scss/loading";
+@import "./scss/swiper";
+@import "./scss/alerts";
+
+@import "./scss/header";
+@import "./scss/mains";
+@import "./scss/footer";

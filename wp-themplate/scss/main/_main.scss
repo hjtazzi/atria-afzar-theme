@@ -1,0 +1,56 @@
+.home-posts,
+.home-product {
+    padding-top: $containers-padding;
+    padding-bottom: $containers-padding;
+}
+
+.home-posts .home-posts-swiper,
+.home-product .home-product-swiper,
+.blog-content .blog-posts-swiper,
+.products-content .products-swiper,
+.category .category-content,
+.tag .tag-content,
+.author-posts .author-posts-swiper,
+.author-products .author-products-swiper,
+.post-comments,
+.profile-content .item-content {
+    .title {
+        @include title();
+    }
+}
+
+.home-posts-swiper .swiper-wrapper .swiper-slide,
+.blog-posts-swiper .swiper-wrapper .swiper-slide,
+.category .category-content .row .col,
+.tag .tag-content .row .col,
+.author-posts-swiper .swiper-wrapper .swiper-slide,
+.search .search-content .row .col {
+    padding: .75rem;
+
+    .post-card {
+        @include post-card();
+    }
+}
+
+.home-product-swiper .swiper-wrapper .swiper-slide,
+.products-content .products-swiper .swiper-wrapper .swiper-slide,
+.category .category-content .row .col,
+.tag .tag-content .row .col,
+.author-products-swiper .swiper-wrapper .swiper-slide,
+.search .search-content .row .col {
+    padding: .75rem;
+
+    .product-card {
+        @include product-card();
+    }
+}
+
+.category .category-content,
+.tag .tag-content,
+.search .search-content,
+.post-comments .post-comments_root,
+.profile-container .item-menu .item-content {
+    .pagination {
+        @include pagination();
+    }
+}

@@ -1,0 +1,358 @@
+$avatarH: 50px;
+$mainHPT: 1.5rem;
+$mainHPB: .25rem;
+$transform-fd: map-get($root, transition-df);
+
+.header {
+
+    &,
+    * {
+        position: relative;
+        z-index: 999;
+        @include user-select();
+    }
+
+    &::before {
+        content: "";
+        position: relative;
+        display: block;
+        height: 5px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: map-get($root, mainColor1);
+        background-image: linear-gradient(to left, map-get($root, color2), map-get($root, color1), map-get($root, color2));
+        background-size: 200% 100%;
+        @include animations(beforeHeader, 8s, linear, infinite);
+    }
+
+    &::after {
+        content: "";
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 0;
+        clear: both;
+    }
+
+    & {
+        background: transparent !important;
+        width: 100%;
+        filter: drop-shadow(map-get($root, drop-shadow-d));
+    }
+
+    .main-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 0;
+        padding: $mainHPB $mainHPT;
+        background-color: map-get($root, white);
+
+        .first-header {
+            display: flex;
+            align-items: center;
+            padding: $mainHPB 0;
+            min-height: $avatarH + 8px;
+
+            #show-nev-menu {
+                font-size: 1.75rem;
+                padding: .25rem .5rem;
+                margin-left: $mainHPT / 2;
+                line-height: 1;
+                color: map-get($root, mainColor1);
+
+                >i {
+                    line-height: 1;
+                }
+
+                &:hover {
+                    color: map-get($root, mainColor2);
+                }
+            }
+
+            a {
+                display: inline-block;
+
+                img {
+                    height: $avatarH;
+                    width: auto;
+                    border-radius: 0;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .nav-header {
+            display: flex;
+            align-items: center;
+            height: auto;
+
+            nav {
+                justify-self: flex-start;
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    li {
+                        margin-top: 2px;
+                        margin-left: .75rem;
+                        font-size: 1.15rem;
+
+                        a {
+                            display: inline-block;
+                            padding: 0 .25rem;
+                            line-height: 1.5;
+                            text-align: center;
+
+                            &::after {
+                                content: "";
+                                display: block;
+                                width: 100%;
+                                height: 2px;
+                                border-radius: 1px;
+                                background-color: map-get($root, mainColor1);
+                                background-image: linear-gradient(to left, map-get($root, color1), map-get($root, color2));
+                                transform: scaleX(0);
+                                transition: transform $transform-fd, color $transform-fd;
+                            }
+
+                            &:hover {
+                                transform: translateY(-2px);
+
+                                &::after {
+                                    transform: scaleX(1.15);
+                                }
+                            }
+
+                            &:active::after {
+                                transform: scaleX(1.5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .profile-header {
+            position: absolute;
+            left: $mainHPT;
+            top: $mainHPB * 2;
+            border-radius: 50%;
+            background-color: map-get($root, white);
+
+            &:hover {
+                #profile-btn {
+                    transform: translateY(-4px);
+                }
+
+                .profile-menu {
+                    display: block;
+                    visibility: visible;
+                    @include animations(profileMenu, .35s);
+                }
+            }
+
+            #profile-btn {
+                padding: 0;
+                transition: transform $transform-fd;
+
+                svg {
+                    width: $avatarH;
+                    height: $avatarH;
+
+                    circle,
+                    path {
+                        fill: none;
+                        stroke-width: 2px;
+                        stroke-linecap: round;
+                    }
+                }
+            }
+
+            .profile-menu {
+                position: absolute;
+                display: none;
+                visibility: hidden;
+                left: $avatarH / 2.75;
+                top: $avatarH;
+                min-width: 8.5rem;
+                padding: .5rem;
+                border-radius: map-get($root, border-radius);
+                border-top-left-radius: map-get($root, border-radius) / 2;
+                background-color: map-get($root, white);
+                box-shadow: 0 0 5px 0 var(--main-gray-d);
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    li {
+
+                        a {
+                            position: relative;
+                            display: flex;
+                            flex-wrap: nowrap;
+                            align-items: stretch;
+                            justify-content: stretch;
+                            padding: .25rem .75rem;
+                            font-size: 1rem;
+                            line-height: 1.5;
+
+                            &:hover {
+                                transform: translateX(-2px);
+
+                                &::before {
+                                    transform: scaleY(1);
+                                }
+                            }
+
+                            &::before {
+                                content: "";
+                                position: relative;
+                                display: block;
+                                min-height: 100%;
+                                width: 2px;
+                                margin-top: 3px;
+                                margin-left: .25rem;
+                                border-radius: 1px;
+                                background-color: map-get($root, mainColor1);
+                                background-image: linear-gradient(to top, map-get($root, color1), map-get($root, color2));
+                                transform: scaleY(0);
+                                transition: transform $transform-fd, color $transform-fd;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .after-header {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-align: right;
+
+        &,
+        * {
+            z-index: 998;
+        }
+
+        svg {
+            position: relative;
+            display: block;
+        }
+    }
+}
+
+/* Desktop */
+@media (mediaMinWidth()) {
+    .header {
+        .main-header {
+            flex-wrap: nowrap;
+
+            .first-header {
+                margin-left: $mainHPT;
+
+                #show-nev-menu {
+                    display: none;
+                    visibility: hidden;
+                }
+            }
+
+            .nav-header {
+                nav {
+                    ul {
+                        display: flex;
+                        flex-wrap: nowrap;
+                    }
+                }
+            }
+        }
+
+        .after-header {
+            svg {
+                width: 280px;
+            }
+        }
+    }
+}
+
+/* Mobile */
+@media (mediaMaxWidth()) {
+    .header {
+        &::before {
+            height: 3px;
+        }
+
+        .main-header {
+            flex-wrap: wrap;
+            padding: $mainHPB $mainHPT/3 !important;
+
+            .first-header {
+                a {
+                    img {
+                        height: $avatarH / 1.25;
+                    }
+                }
+            }
+
+            .nav-header {
+                width: 100%;
+
+                nav {
+                    overflow: hidden;
+                    max-height: 170px;
+                    transition: all map-get($root, transition-nav);
+
+                    ul {
+                        margin-top: 1.25rem;
+                        padding: 0 .5rem;
+
+                        li {
+                            margin: 0 0 .5rem 0;
+                            font-size: 1rem;
+
+                            &:last-child {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+                .nav-hidden {
+                    max-height: 0;
+                    visibility: hidden;
+                }
+            }
+
+            .profile-header {
+                left: $mainHPT / 3 !important;
+
+                #profile-btn {
+                    svg {
+                        width: $avatarH / 1.25;
+                        height: $avatarH / 1.25;
+                    }
+                }
+
+                .profile-menu {
+
+                    left: $avatarH / 2.75;
+                    top: $avatarH / 1.25;
+                }
+            }
+        }
+
+        .after-header {
+            svg {
+                width: 180px;
+            }
+        }
+    }
+}
